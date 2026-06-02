@@ -6,9 +6,9 @@
 
 ## 2. uitvoering
 1. Ik heb in eerste instantie een class gemaakt met waarin alle berekeningen worden uitgevoerd van de fermentaties. Vervolgens heb ik een eerste simulatie gerund en geplot in plotly. Hieruit kwam de volgende grafiek:
-![plot](plots/newplot%20(3).png)
+![plot](plots/figures/newplot%20(3).png)
 
-2. Het substraat lijkt nergens op, om te kijken of mijn berekeningen kloppen ga ik een paar unit tests uitvoeren.
+2. Het substraat lijkt nergens op, om te kijken of mijn berekeningen kloppen ga ik een  unit tests uitvoeren. Deze test print de tijd, biomassa en substraat
 ```
 at: 5 min 
  biomass: 0.5333333333333333
@@ -68,7 +68,7 @@ at: 95 min
  biomass: -305299661.2921684
  substrate: 42742415.86655155
 ```
-hieruit blijkt dat er geen rekening is gehouden met het geit dat het substraat op kan raken
+hieruit blijkt dat er geen rekening is gehouden met het geit dat het substraat op kan raken. dit is te zien aan het feit dat alles alle kanten op gaat
 
 3. nu een case toegevoegd waarbij de fermentatie ophoud als het substraat onder de 0 komt
 ```
@@ -94,3 +94,9 @@ at: 30 min
  biomass: 64.647741349031
  substrate: 3.4553133811777585
 ```
+
+4. Nu dit goed gaat weer een plot gemaakt. biomassa staat nu als substraat in het plot
+![plot](plots/figures/newplot%20(4).png)
+
+5. Niet de goede list ingevoerd bij de argumenten, nu wel gedaan
+![plot](plots/figures/newplot%20(5).png)

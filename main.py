@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 import time
 from ferm_equetions import *
 from START_VALUES import *
@@ -13,7 +14,7 @@ def main():
     time_current = 0
 
     #initialising equations class
-    organism = equations(
+    fermentation = equations(
         biomass=biomass_start,
         substrate=substrate_start,
         vollume=vollume_start,
@@ -21,14 +22,14 @@ def main():
         dt = dt,
         product= product_start)
     
-    fig = go.Figure()
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
     
     #calculating substrate/biomass over time
-    while time_current < max_time and organism.substrate > 0:
+    while time_current < max_time and fermentation.substrate > 0:
         time_steps.append(time_current)
-        biomass_steps.append(organism.biomass)
-        substrate_steps.append(organism.substrate)
-        organism.update()
+        biomass_steps.append(fermentation.biomass)
+        substrate_steps.append(fermentation.substrate)
+        fermentation.update()
         time_current += dt
     
     #adding biomass trace
@@ -37,17 +38,19 @@ def main():
             y=biomass_steps,
             name = "biomass",
             line = dict(color = "Red", dash = "dash")
-        )
+        ),
+        secondary_y= False
     )
 
     #adding substrate trace
     fig.add_trace(
         go.Scatter(x=time_steps,
-                   y=biomass_steps,
+                   y=substrate_steps,
                    name = "substrate",
                    line = dict(color = "Blue", dash = "dash")
 
-        )
+        ),
+        secondary_y= True
     )
     # Set title
     fig.update_layout(
@@ -55,7 +58,12 @@ def main():
         xaxis_domain=[0.05, 1.0]
     )
 
-    fig.write_html(f"plots/plot_{str(time.time())}.html")
+    #setting axis titles
+    fig.update_xaxes(title_text = "time (min)")
+    fig.update_yaxes(title_text = "biomassa (OD)", secondary_y= False)
+    fig.update_yaxes(title_text = "substrate g/l", secondary_y= True)
+
+    fig.write_html(f"plots/plot_{time.time()}.html")
 
 
 

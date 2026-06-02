@@ -10,6 +10,8 @@ def main():
     biomass_steps = []
     substrate_steps = []
 
+    time_current = 0
+
     #initialising equations class
     organism = equations(
         biomass=biomass_start,
@@ -22,16 +24,16 @@ def main():
     fig = go.Figure()
     
     #calculating substrate/biomass over time
-    while t < max_time:
-        time_steps.append(t)
+    while time_current < max_time:
+        time_steps.append(time_current)
         biomass_steps.append(organism.biomass)
         substrate_steps.append(organism.substrate)
         organism.update()
-        t += dt
+        time_current += dt
     
     #adding biomass trace
     fig.add_trace(
-        go.scatter(x=time_steps,
+        go.Scatter(x=time_steps,
             y=biomass_steps,
             name = "biomass",
             line = dict(color = "Red", dash = "dash")
@@ -40,10 +42,10 @@ def main():
 
     #adding substrate trace
     fig.add_trace(
-        go.scatter(x=time_steps,
+        go.Scatter(x=time_steps,
                    y=biomass_steps,
                    name = "substrate",
-                   line = dict(color = "Blue", dash = "dashed")
+                   line = dict(color = "Blue", dash = "dash")
 
         )
     )
@@ -53,7 +55,7 @@ def main():
         xaxis_domain=[0.05, 1.0]
     )
 
-    fig.write_html(f"plot_{time.time}")
+    fig.write_html(f"plots/plot_{str(time.time)}.html")
 
 
 

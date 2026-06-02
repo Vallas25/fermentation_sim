@@ -5,4 +5,4 @@ vollume_start = 3
 mu_max = 0.5
 dt = 5
 max_time = 300
-t = 0
+time_current = 0

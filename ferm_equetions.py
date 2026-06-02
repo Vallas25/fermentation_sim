@@ -30,3 +30,22 @@ class equations:
         self.growth_speed()
         self.new_biomass()
         self.new_substrate()
+
+
+def main():
+    time_current = 0
+    fermentation = equations(
+        biomass=0.2,
+        substrate=10,
+        vollume=3,
+        mu_max= 0.5,
+        dt = 5,
+        product= 0)
+    
+    while time_current < 100 and fermentation.substrate > 0:
+        print(f"at: {time_current} min \n biomass: {fermentation.biomass}\n substrate: {fermentation.substrate}")
+        fermentation.update()
+        time_current += 5
+
+if __name__ == "__main__":
+    main()

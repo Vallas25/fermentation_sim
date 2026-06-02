@@ -24,7 +24,7 @@ def main():
     fig = go.Figure()
     
     #calculating substrate/biomass over time
-    while time_current < max_time:
+    while time_current < max_time and organism.substrate > 0:
         time_steps.append(time_current)
         biomass_steps.append(organism.biomass)
         substrate_steps.append(organism.substrate)
@@ -55,7 +55,7 @@ def main():
         xaxis_domain=[0.05, 1.0]
     )
 
-    fig.write_html(f"plots/plot_{str(time.time)}.html")
+    fig.write_html(f"plots/plot_{str(time.time())}.html")
 
 
 

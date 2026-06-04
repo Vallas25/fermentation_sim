@@ -6,29 +6,30 @@ from START_VALUES import *
 
 
 def main():
-    #all the lists for the graph
-    time_steps = []
-    biomass_steps = []
-    substrate_steps = []
-
     time_current = 0
 
     #initialising equations class
     fermentation = equations(
         biomass=biomass_start,
-        substrate=substrate_start,
+        substrate_concentration=substrate_start,
         vollume=vollume_start,
         mu_max= mu_max,
         dt = dt,
         product= product_start)
     
+    #all the lists for the graph
+    time_steps = []
+    biomass_steps = []
+    substrate_steps = []
+    mu_steps = []
+    steps = {time_steps: time_current, biomass_steps: fermentation.biomass, substrate_steps: fermentation.substrate, mu_steps: fermentation.mu}
+    
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     
     #calculating substrate/biomass over time
     while time_current < max_time and fermentation.substrate > 0:
-        time_steps.append(time_current)
-        biomass_steps.append(fermentation.biomass)
-        substrate_steps.append(fermentation.substrate)
+        for step in steps:
+            step.append(steps[step])
         fermentation.update()
         time_current += dt
     
@@ -52,6 +53,16 @@ def main():
         ),
         secondary_y= True
     )
+
+    fig.add_trace(
+        go.scatter(x=time_steps,
+                   y=mu_steps,
+                   name = "mu",
+                   line = dict(color = "Green", dash = "dash")
+
+        )
+    )
+
     # Set title
     fig.update_layout(
         title_text="Biomass over time",

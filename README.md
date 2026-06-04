@@ -100,3 +100,7 @@ at: 30 min
 
 5. Niet de goede list ingevoerd bij de argumenten, nu wel gedaan
 ![plot](plots/figures/newplot%20(5).png)
+
+6. Reactor vollume is now 1 L, however it should be 3L this is  -> aanpassingen
+
+7. run functionaliteit ingebouwd. Hier word de fermentatie door de class zelf gerund.

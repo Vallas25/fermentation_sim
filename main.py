@@ -15,28 +15,18 @@ def main():
         vollume=vollume_start,
         mu_max= mu_max,
         dt = dt,
+        max_time= max_time,
         product= product_start)
-    
-    #all the lists for the graph
-    time_steps = []
-    biomass_steps = []
-    substrate_steps = []
-    mu_steps = []
-    steps = {time_steps: time_current, biomass_steps: fermentation.biomass, substrate_steps: fermentation.substrate, mu_steps: fermentation.mu}
     
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     
     #calculating substrate/biomass over time
-    while time_current < max_time and fermentation.substrate > 0:
-        for step in steps:
-            step.append(steps[step])
-        fermentation.update()
-        time_current += dt
+    fermentation.run()
     
     #adding biomass trace
     fig.add_trace(
-        go.Scatter(x=time_steps,
-            y=biomass_steps,
+        go.Scatter(x=fermentation.time_steps,
+            y=fermentation.biomass_steps,
             name = "biomass",
             line = dict(color = "Red", dash = "dash")
         ),
@@ -45,22 +35,13 @@ def main():
 
     #adding substrate trace
     fig.add_trace(
-        go.Scatter(x=time_steps,
-                   y=substrate_steps,
+        go.Scatter(x=fermentation.time_steps,
+                   y=fermentation.substrate_concentration_steps,
                    name = "substrate",
                    line = dict(color = "Blue", dash = "dash")
 
         ),
         secondary_y= True
-    )
-
-    fig.add_trace(
-        go.scatter(x=time_steps,
-                   y=mu_steps,
-                   name = "mu",
-                   line = dict(color = "Green", dash = "dash")
-
-        )
     )
 
     # Set title

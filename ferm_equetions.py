@@ -26,12 +26,17 @@ class equations:
     
 
     def growth_speed(self):
-        self.mu = self.mu_max*(self.substrate/(self.half_saturation_constant+self.substrate))
+        if self.substrate <= 0:
+            self.mu = 0
+        else:
+            self.mu = self.mu_max*(self.substrate/(self.half_saturation_constant+self.substrate))
     
     def new_biomass(self):
         self.biomass =self.biomass + (self.dt * self.mu * self.biomass)
     
     def new_substrate(self):
+        if self.substrate <= 0:
+            self.substrate = 0
         total_substrate = self.substrate - ((1/self.biomass_substrate_constant)*self.mu*self.biomass)
         self.substrate = total_substrate
         self.substrate_concentration = total_substrate / self.vollume
@@ -48,7 +53,7 @@ class equations:
         self.biomass_steps= []
         self.substrate_concentration_steps = []
         
-        while self.time_current < self.max_time and self.substrate > 0:
+        while self.time_current < self.max_time:
             self.time_steps.append(self.time_current)
             self.mu_steps.append(self.mu)
             self.biomass_steps.append(self.biomass)

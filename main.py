@@ -1,5 +1,6 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from dash import Dash, dcc, html, Input, Output
 import time
 from ferm_equetions import *
 from START_VALUES import *
@@ -55,7 +56,12 @@ def main():
     fig.update_yaxes(title_text = "biomassa (OD)", secondary_y= False)
     fig.update_yaxes(title_text = "substrate g/l", secondary_y= True)
 
-    fig.write_html(f"plots/plot_{time.time()}.html")
+    app = Dash()
+    app.layout = html.Div([
+    dcc.Graph(figure=fig)
+    ])
+
+    app.run(debug=True, use_reloader=False)
 
 
 

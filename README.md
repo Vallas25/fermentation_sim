@@ -104,3 +104,10 @@ at: 30 min
 6. Reactor vollume is now 1 L, however it should be 3L this is  -> aanpassingen
 
 7. run functionaliteit ingebouwd. Hier word de fermentatie door de class zelf gerund.
+
+8. App werkt nu met dash, hierdoor wordt deze interactief.
+![plot](plots/figures/newplot%20(6).png)
+
+9. de mu max is per uur. er wordt hier gerekend met munuten. dit is aangepast door het mu_max argument in de __init__ te delen door 60
+![plot](plots/figures/newplot%20(7).png)
+

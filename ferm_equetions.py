@@ -11,7 +11,7 @@ class equations:
         self.substrate = substrate_concentration * vollume
         self.product = product
         self.vollume = vollume
-        self.mu_max = mu_max
+        self.mu_max = mu_max/60
         self.max_time = max_time
         self.dt = dt
         self.mu = mu_max

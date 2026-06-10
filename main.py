@@ -9,17 +9,22 @@ def main():
     
     app = Dash()
 
-    app.layout = html.Div([
+    controls_panel = html.Div([
+            html.Label("Run time (min)"),
         dcc.Slider(id="run_time",
                    min=10,
                    max=1000,
                    step=1,
                    value=max_time),
+        
+        html.Label("initial biomass (OD)"),
         dcc.Slider(id="biomass",
                    min=0,
                    max=1,
                    step=0.01,
                    value=biomass_start,),
+
+        html.Label("Initial substrate (g/l)"),
         dcc.Slider(id="substrate",
                    min=1,
                    max=40,
@@ -27,9 +32,29 @@ def main():
                    value=substrate_start),
 
         html.Button("Run simulation", id="run-btn"),
+    ],
+    style={
+        "width": "25%",
+        "padding": "20px"
+    }
+    )
 
+    plot = html.Div([
         dcc.Graph(id="fermentation-graph")
-    ])
+    ],
+    style={
+        "width": "75%"
+    }
+    )
+
+    app.layout = html.Div([
+        controls_panel, plot
+    ],
+    style={
+        "display": "flex",
+        "flexDirection": "row"
+    }
+    )
 
     @app.callback(
         Output("fermentation-graph","figure"),

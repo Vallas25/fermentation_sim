@@ -114,3 +114,5 @@ at: 30 min
 10. Interactieve sliders toegevoegd. Ik heb eerst heel lang documentatie/tutorials door gelezen. Deze gaven alle niet wat ik precies zocht. Vervolgens heb ik chat.gpt gevraagd wat ik allemaal moest aanpassen voor om te komen naar een interactieve dash app. Ik heb gevraagd om niet het hele script te veranderen, alleen mij pointers te geven en om structuren van de sliders aan te geven. Hierna heb ik zelf alle aanpassingen gemaakt.
 ![plot](plots/figures/newplot%20(8).png)
 
+11. Layout aangepast, zodat de sliders links zitten en de grafiek rechts. Wederom aan chatgpt voor pointers gevraagd. De documentatie van plotly is (naar mijn mening) erg vaag/niet heel duidelijk
+![plot](plots/figures/Screenshot%202026-06-10%20164450.png)

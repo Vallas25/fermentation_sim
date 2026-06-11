@@ -47,12 +47,30 @@ def main():
     }
     )
 
-    app.layout = html.Div([
+    gene_selector = html.Div([
+        html.Label("Gene 1"),
+        dcc.Dropdown(
+            ["Wild type", "knock out"],
+            "Wild type",
+            id="gene_1"
+        )
+    ])
+
+    top = html.Div([
         controls_panel, plot
     ],
     style={
         "display": "flex",
         "flexDirection": "row"
+    }
+    )
+
+    app.layout = html.Div([
+        top, gene_selector
+    ],
+    style={
+        "display": "flex",
+        "flexDirection": "columns"
     }
     )
 
@@ -62,10 +80,11 @@ def main():
         State("biomass", "value"),
         State("substrate", "value"),
         State("run_time", "value"),
+        Input("gene_1", "value"),
         prevent_initial_call=True
 
     )
-    def update_graph(n_clicks, biomass, substrate, run_time):
+    def update_graph(n_clicks, biomass, substrate, run_time, gene_1):
 
         #initialising equations class
         fermentation = equations(
@@ -77,6 +96,8 @@ def main():
             max_time=run_time,
             product=product_start
         )
+
+        print(gene_1)
         
         #calculating substrate/biomass over time
         fermentation.run()

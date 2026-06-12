@@ -130,3 +130,7 @@ at: 30 min
 `OSError: The file with 'yeast-GEM.xml' does not exist, or is not an SBML string. Provide the path to an existing SBML file or a valid SBML string representation:`
 
 17. `model = read_sbml_model("yeast-GEM.xml")` aangepast naar `model = read_sbml_model("strain/yeast-GEM.xml")`. Dit werkt nu wel, dit komt omdat de directory er nu ook bij staat.
+
+18. knockout functie toegevoegd, moet een list geven met een tuple die met alle knockout genen. reterns list zonder inhoud
+
+19. `knockout` bleek fout gespeld te zijn in startvalues. nu wel goede output `[(1, 'knockout'), (2, 'knockout')]`

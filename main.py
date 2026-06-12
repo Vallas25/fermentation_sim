@@ -4,6 +4,7 @@ from dash import Dash, dcc, html, Input, Output, State
 from ferm_equetions import *
 from dividers import *
 from START_VALUES import *
+from strain.knockout import *
 
 
 def main():
@@ -45,10 +46,12 @@ def main():
             product=product_start
         )
 
-        print(f"1: {gene_1}")
-        print(f"2: {gene_2}")
-        print(f"3: {gene_3}")
-        print(f"4: {gene_4}")
+        knockout(
+            gene_1,
+            gene_2,
+            gene_3,
+            gene_4
+        )
         
         #calculating substrate/biomass over time
         fermentation.run()

@@ -50,11 +50,33 @@ def main():
     gene_selector = html.Div([
         html.Label("Gene 1"),
         dcc.Dropdown(
-            ["Wild type", "knock out"],
+            gene_types,
             "Wild type",
             id="gene_1"
+        ),
+        html.Label("Gene 2"),
+        dcc.Dropdown(
+            gene_types,
+            "Wild type",
+            id="gene_2"
+        ),
+        html.Label("Gene 3"),
+        dcc.Dropdown(
+            gene_types,
+            "Wild type",
+            id="gene_3"
+        ),
+        html.Label("Gene 4"),
+        dcc.Dropdown(
+            gene_types,
+            "Wild type",
+            id="gene_4"
         )
-    ]
+    ],
+    style={
+        "display": "flex",
+        "flexDirection": "row",
+    }
     )
 
     top = html.Div([

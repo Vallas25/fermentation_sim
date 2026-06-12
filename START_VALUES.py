@@ -6,3 +6,4 @@ mu_max = 0.5
 dt = 0.1
 max_time = 300
 time_current = 0
+gene_types = ["Wild type", "knokcout"]

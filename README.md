@@ -120,3 +120,6 @@ at: 30 min
 12. Dropdown menu toegevoegd voor het uitschakelen van genen. Nu ik weet waar ik naar moet zoeken is het iets makkelijker gegaan. Echter is dit nog niet goed uitgelijnd. (dropdown rechts ipv onder)
 
 13. Dropdown mene nu wel onder de grafiek. inplaats van `column` had ik `columns` geschreven.
+
+14. Meerdere dropdown menus gemaakt voor verschillende genen. Code can wellicht wat mooier, dit is echter voor later.
+![plot](plots/figures/Screenshot%202026-06-12%20122303.png)

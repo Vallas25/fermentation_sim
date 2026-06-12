@@ -12,3 +12,15 @@ ethanol = model.metabolites.get_by_id("s_0680")
 
 print(f"ethanol formula: {ethanol.formula}")
 print(f"amount of reactions: {len(ethanol.reactions)}")
+
+
+def knockout(gene_1, gene_2, gene_3, gene_4) -> list:
+    genes = [gene_1, gene_2, gene_3, gene_4]
+    knockout_genes = []
+    
+    for i in range(len(genes)):
+        if genes[i] == "knockout":
+            knockout_genes.append((i, genes[1]))
+            
+    
+    print(knockout_genes)

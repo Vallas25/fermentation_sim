@@ -2,91 +2,13 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from dash import Dash, dcc, html, Input, Output, State
 from ferm_equetions import *
+from dividers import *
 from START_VALUES import *
 
 
 def main():
     
     app = Dash()
-
-    controls_panel = html.Div([
-            html.Label("Run time (min)"),
-        dcc.Slider(id="run_time",
-                   min=10,
-                   max=1000,
-                   step=1,
-                   value=max_time),
-        
-        html.Label("initial biomass (OD)"),
-        dcc.Slider(id="biomass",
-                   min=0,
-                   max=1,
-                   step=0.01,
-                   value=biomass_start,),
-
-        html.Label("Initial substrate (g/l)"),
-        dcc.Slider(id="substrate",
-                   min=1,
-                   max=40,
-                   step=1,
-                   value=substrate_start),
-
-        html.Button("Run simulation", id="run-btn"),
-    ],
-    style={
-        "width": "25%",
-        "padding": "20px"
-    }
-    )
-
-    plot = html.Div([
-        dcc.Graph(id="fermentation-graph")
-    ],
-    style={
-        "width": "75%"
-    }
-    )
-
-    gene_selector = html.Div([
-        html.Label("Gene 1"),
-        dcc.Dropdown(
-            gene_types,
-            "Wild type",
-            id="gene_1"
-        ),
-        html.Label("Gene 2"),
-        dcc.Dropdown(
-            gene_types,
-            "Wild type",
-            id="gene_2"
-        ),
-        html.Label("Gene 3"),
-        dcc.Dropdown(
-            gene_types,
-            "Wild type",
-            id="gene_3"
-        ),
-        html.Label("Gene 4"),
-        dcc.Dropdown(
-            gene_types,
-            "Wild type",
-            id="gene_4"
-        )
-    ],
-    style={
-        "display": "flex",
-        "flexDirection": "row",
-    }
-    )
-
-    top = html.Div([
-        controls_panel, plot
-    ],
-    style={
-        "display": "flex",
-        "flexDirection": "row",
-    }
-    )
 
     app.layout = html.Div([
         top, gene_selector
@@ -104,10 +26,13 @@ def main():
         State("substrate", "value"),
         State("run_time", "value"),
         Input("gene_1", "value"),
+        Input("gene_2", "value"),
+        Input("gene_3", "value"),
+        Input("gene_4", "value"),
         prevent_initial_call=True
 
     )
-    def update_graph(n_clicks, biomass, substrate, run_time, gene_1):
+    def update_graph(n_clicks, biomass, substrate, run_time, gene_1, gene_2, gene_3, gene_4):
 
         #initialising equations class
         fermentation = equations(
@@ -120,7 +45,10 @@ def main():
             product=product_start
         )
 
-        print(gene_1)
+        print(f"1: {gene_1}")
+        print(f"2: {gene_2}")
+        print(f"3: {gene_3}")
+        print(f"4: {gene_4}")
         
         #calculating substrate/biomass over time
         fermentation.run()

@@ -123,3 +123,5 @@ at: 30 min
 
 14. Meerdere dropdown menus gemaakt voor verschillende genen. Code can wellicht wat mooier, dit is echter voor later.
 ![plot](plots/figures/Screenshot%202026-06-12%20122303.png)
+
+15. De gene dropdowns printen nu ook naar de console of ze WT/knockout zijn. Ook hebben alle dividers hun eigen file gekregen.

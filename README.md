@@ -116,3 +116,7 @@ at: 30 min
 
 11. Layout aangepast, zodat de sliders links zitten en de grafiek rechts. Wederom aan chatgpt voor pointers gevraagd. De documentatie van plotly is (naar mijn mening) erg vaag/niet heel duidelijk
 ![plot](plots/figures/Screenshot%202026-06-10%20164450.png)
+
+12. Dropdown menu toegevoegd voor het uitschakelen van genen. Nu ik weet waar ik naar moet zoeken is het iets makkelijker gegaan. Echter is dit nog niet goed uitgelijnd. (dropdown rechts ipv onder)
+
+13. Dropdown mene nu wel onder de grafiek. inplaats van `column` had ik `columns` geschreven.

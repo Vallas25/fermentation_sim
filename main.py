@@ -54,14 +54,15 @@ def main():
             "Wild type",
             id="gene_1"
         )
-    ])
+    ]
+    )
 
     top = html.Div([
         controls_panel, plot
     ],
     style={
         "display": "flex",
-        "flexDirection": "row"
+        "flexDirection": "row",
     }
     )
 
@@ -70,7 +71,7 @@ def main():
     ],
     style={
         "display": "flex",
-        "flexDirection": "columns"
+        "flexDirection": "column"
     }
     )
 

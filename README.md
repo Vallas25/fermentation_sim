@@ -125,3 +125,8 @@ at: 30 min
 ![plot](plots/figures/Screenshot%202026-06-12%20122303.png)
 
 15. De gene dropdowns printen nu ook naar de console of ze WT/knockout zijn. Ook hebben alle dividers hun eigen file gekregen.
+
+16. strain toegevoegd, code gecopiëerd vanuit week 3. deze werkt niet.
+`OSError: The file with 'yeast-GEM.xml' does not exist, or is not an SBML string. Provide the path to an existing SBML file or a valid SBML string representation:`
+
+17. `model = read_sbml_model("yeast-GEM.xml")` aangepast naar `model = read_sbml_model("strain/yeast-GEM.xml")`. Dit werkt nu wel, dit komt omdat de directory er nu ook bij staat.

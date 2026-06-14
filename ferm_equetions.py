@@ -1,3 +1,5 @@
+from START_VALUES import *
+
 class equations:
     def __init__(self, biomass: int | float,
                 substrate_concentration :int | float, 
@@ -7,10 +9,10 @@ class equations:
                 dt: int | float = 5, 
                 product: int | float = 0):
         self.biomass = biomass
-        self.substrate_concentration = substrate_concentration
-        self.substrate = substrate_concentration * vollume
-        self.product = product
         self.vollume = vollume
+        self.substrate_concentration = substrate_concentration
+        self.substrate = substrate_concentration * self.vollume
+        self.product = product
         self.mu_max = mu_max/60
         self.max_time = max_time
         self.dt = dt

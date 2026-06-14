@@ -26,6 +26,7 @@ def main():
         State("biomass", "value"),
         State("substrate", "value"),
         State("run_time", "value"),
+        State("max_value","value"),
         Input("gene_1", "value"),
         Input("gene_2", "value"),
         Input("gene_3", "value"),
@@ -33,13 +34,13 @@ def main():
         prevent_initial_call=True
 
     )
-    def update_graph(n_clicks, biomass, substrate, run_time, gene_1, gene_2, gene_3, gene_4):
+    def update_graph(n_clicks, biomass, substrate, run_time, max_value, gene_1, gene_2, gene_3, gene_4):
 
         #initialising equations class
         fermentation = equations(
             biomass=biomass,
             substrate_concentration=substrate,
-            vollume=vollume_start,
+            vollume=max_value,
             mu_max=mu_max,
             dt=dt,
             max_time=run_time,

@@ -134,3 +134,9 @@ at: 30 min
 18. knockout functie toegevoegd, moet een list geven met een tuple die met alle knockout genen. reterns list zonder inhoud
 
 19. `knockout` bleek fout gespeld te zijn in startvalues. nu wel goede output `[(1, 'knockout'), (2, 'knockout')]`
+
+18. Nieuwe elementen toe gevoegd voor fedbatch functionaliteit. Dit gedaan door documentatie te lezen. Niet alles ging in 1 keer goed. De checkbox renderde eerst niet. Beter de documentatie gelezen en nu renderd hij wel.
+
+19. Alle elementen voor de interactiviteit naar de een nieuwe file verplaatst [dividers.py](dividers.py). 
+
+20. Spelfout in code aangepast. (`vollume` -> `volume`)

@@ -59,7 +59,7 @@ controls_panel = html.Div([
                    step=1,
                    value=substrate_start),
         
-        html.Label("Max vollume"),
+        html.Label("Max volume (l)"),
         dcc.Input(type="number", id="max_value"),
 
         fed_batch_panel,

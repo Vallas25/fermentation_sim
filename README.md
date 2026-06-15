@@ -2,6 +2,13 @@
 
 ## 1 Beschrijving
 ### doel
+Het doel is om een interactieve fermentatie simulatie te maken. Dit wil ik doen door geruik te maken van plotly en cobrapy.
+
+![fig](plots/figures/interactive_plot.png)
+de UI moet er ongeveer uit gaan zien als hier boven
+
+![fig](plots/figures/Code_structure.png)
+dit moet de code structure worden (de bestanden)
 
 
 ## 2. uitvoering
@@ -140,3 +147,5 @@ at: 30 min
 19. Alle elementen voor de interactiviteit naar de een nieuwe file verplaatst [dividers.py](dividers.py). 
 
 20. Spelfout in code aangepast. (`vollume` -> `volume`)
+
+21. vollume input werkt nu ook voor batch fermentaties.

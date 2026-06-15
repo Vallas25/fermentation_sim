@@ -40,7 +40,7 @@ def main():
         fermentation = equations(
             biomass=biomass,
             substrate_concentration=substrate,
-            vollume=max_value,
+            volume=max_value,
             mu_max=mu_max,
             dt=dt,
             max_time=run_time,

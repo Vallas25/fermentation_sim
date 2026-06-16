@@ -149,3 +149,8 @@ at: 30 min
 20. Spelfout in code aangepast. (`vollume` -> `volume`)
 
 21. vollume input werkt nu ook voor batch fermentaties.
+![plot](plots/figures//Screenshot%202026-06-15%20150937.png)
+
+22. trigger condities toegevoegd voor fedbatch fermentatie
+
+23. start values toegevoegd voor start en max vollume

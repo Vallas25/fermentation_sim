@@ -26,7 +26,13 @@ def main():
         State("biomass", "value"),
         State("substrate", "value"),
         State("run_time", "value"),
-        State("max_value","value"),
+        State("max_volume","value"),
+        State("initial_volume", "value"),
+        State("feed_rate", "value"),
+        State("fedbatch_concentration", "value"),
+        Input("trigger_condition", "value"),
+        State("triger_value", "value"),
+        Input("fedbatch", "value"),
         Input("gene_1", "value"),
         Input("gene_2", "value"),
         Input("gene_3", "value"),
@@ -34,19 +40,46 @@ def main():
         prevent_initial_call=True
 
     )
-    def update_graph(n_clicks, biomass, substrate, run_time, max_value, gene_1, gene_2, gene_3, gene_4):
+    def update_graph(
+    n_clicks,
+    biomass,
+    substrate,
+    run_time,
+    max_volume,
+    initial_volue,
+    feed_rate,
+    fedbatch_concentration,
+    trigger_condition,
+    trigger_value,
+    fedbatch,
+    gene_1,
+    gene_2,
+    gene_3,
+    gene_4
+):
 
+        #on of switch for fedbatch
+        if fedbatch == ["fedbatch_on"]:
+            fedbatch = True
+        else:
+            fedbatch = False
+        
         #initialising equations class
         fermentation = equations(
             biomass=biomass,
             substrate_concentration=substrate,
-            volume=max_value,
+            volume=initial_volue,
             mu_max=mu_max,
             dt=dt,
             max_time=run_time,
+            is_fedbatch=fedbatch,
+            feed_rate=feed_rate,
+            max_volume=max_volume,
+            trigger_condition=trigger_condition,
+            trigger_value=trigger_value,
+            feed_concentration= fedbatch_concentration,
             product=product_start
         )
-
         knockout(
             gene_1,
             gene_2,
@@ -76,9 +109,16 @@ def main():
                     y=fermentation.substrate_concentration_steps,
                     name = "substrate",
                     line = dict(color = "Blue", dash = "dash")
-
             ),
             secondary_y= True
+        )
+
+        fig.add_trace(
+            go.Scatter(x=fermentation.time_steps,
+                       y=fermentation.volume_steps,
+                       name="vollume",
+                       line=dict(color = "Green", dash = "dash")),
+                       secondary_y= False
         )
 
         # Set title

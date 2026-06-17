@@ -154,3 +154,9 @@ at: 30 min
 22. trigger condities toegevoegd voor fedbatch fermentatie
 
 23. start values toegevoegd voor start en max vollume
+
+24. Begonnen met het implementeren van de fedbatch functionaliteit. Hiervoor een initialise methot toegevoegd aan de equetions class. Deze cheked eerst of het max vollume groter is dan het initiële vollume. Zo niet raised hij een exception. Anders zet hij alle steps lists op 0.
+![plot](plots/figures/Screenshot%202026-06-17%20121822.png)
+
+25. Fedbatch geïmplementeerd. Meerdere variablen van naam veranderd en andere dingen geweizigd. Variablen werden niet lekker geassigned, dit kwam door meerdere dingen. Maar nu werkt het.
+![plot](plots/figures//Screenshot%202026-06-17%20173000.png)

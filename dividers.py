@@ -11,21 +11,21 @@ fed_batch_panel = html.Div([
     value=[],
     id="fedbatch"),
     html.Div([
-        html.Label("initial volume (l)"),
-        dcc.Input(type="number", id="initial_volume", value=3),
+        html.Label("max volume (l)"),
+        dcc.Input(type="number", id="max_volume", value=5),
     ],
     style={
         "display": "flex",
         "flexDirection": "row"
     }
     ),
-    html.Label("feed rate (l/min)"),
+    html.Label("feed rate (ml/min)"),
     dcc.Slider(
         id="feed_rate",
         min=0,
-        max=30,
-        step=1,
-        value=15
+        max=3000,
+        step=10,
+        value=150
     ),
     html.Label("Substrate concentration (g/l)"),
     dcc.Slider(
@@ -40,10 +40,10 @@ fed_batch_panel = html.Div([
         dcc.Dropdown(
             ["OD", "Substrate", "Time"],
             "Substrate",
-            id = "trigger_type",
+            id = "trigger_condition",
         ),
         html.Label("Value"),
-        dcc.Input(type="number", id="triger_value")
+        dcc.Input(type="number", id="triger_value", value=0)
     ],
     style = {
         "display": "flex",
@@ -74,8 +74,8 @@ controls_panel = html.Div([
                    step=1,
                    value=substrate_start),
         
-        html.Label("Max volume (l)"),
-        dcc.Input(type="number", id="max_value", value=4),
+        html.Label("initial volume (l)"),
+        dcc.Input(type="number", id="initial_volume", value=3),
 
         fed_batch_panel,
 

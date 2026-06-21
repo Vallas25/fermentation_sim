@@ -23,8 +23,8 @@ fed_batch_panel = html.Div([
     dcc.Slider(
         id="feed_rate",
         min=0,
-        max=3000,
-        step=10,
+        max=300,
+        step=1,
         value=150
     ),
     html.Label("Substrate concentration (g/l)"),

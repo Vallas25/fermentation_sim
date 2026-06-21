@@ -98,28 +98,26 @@ def main():
             go.Scatter(x=fermentation.time_steps,
                 y=fermentation.biomass_steps,
                 name = "biomass",
-                line = dict(color = "Red", dash = "dash")
-            ),
-            secondary_y= False
-        )
+                line = dict(color = "Red", dash = "dash"),
+                yaxis="y"
+            ))
 
         #adding substrate trace
         fig.add_trace(
             go.Scatter(x=fermentation.time_steps,
                     y=fermentation.substrate_concentration_steps,
                     name = "substrate",
-                    line = dict(color = "Blue", dash = "dash")
-            ),
-            secondary_y= True
-        )
+                    line = dict(color = "Blue", dash = "dash"),
+                    yaxis="y2"
+            ))
 
         fig.add_trace(
             go.Scatter(x=fermentation.time_steps,
                        y=fermentation.volume_steps,
-                       name="vollume",
-                       line=dict(color = "Green", dash = "dash")),
-                       secondary_y= False
-        )
+                       name="volume",
+                       line=dict(color = "Green", dash = "dash"),
+                       yaxis="y3"
+                       ))
 
         # Set title
         fig.update_layout(
@@ -128,9 +126,45 @@ def main():
         )
 
         #setting axis titles
-        fig.update_xaxes(title_text = "time (min)")
-        fig.update_yaxes(title_text = "biomassa (OD)", secondary_y= False)
-        fig.update_yaxes(title_text = "substrate g/l", secondary_y= True)
+        fig.update_layout(
+            xaxis=dict(
+                domain=[0,0.8],
+        title=dict(
+            text="time"
+        )
+    ),
+    yaxis=dict(
+        title=dict(
+            text="biomass (OD)",
+            font=dict(
+                color="Red"
+            )
+        ),
+    ),
+    yaxis2=dict(
+        title=dict(
+            text="substrate (g/l)",
+            font=dict(
+                color="Blue"
+            )
+        ),
+        anchor="free",
+        overlaying="y",
+        side="right",
+        position=0.95
+    ),
+    yaxis3=dict(
+        title=dict(
+            text="volume",
+            font=dict(
+                color="Green"
+            )
+        ),
+        anchor="x",
+        overlaying="y",
+        side="right",
+    ),
+        )
     
         return fig
 

@@ -1,6 +1,7 @@
 from START_VALUES import *
 
 class equations:
+    # init class
     def __init__(self, biomass: int | float,
                 substrate_concentration :int | float, 
                 volume: int | float,
@@ -23,7 +24,7 @@ class equations:
         self.max_time = max_time
         self.dt = dt
         self.mu = mu_max
-        self.feed_rate = feed_rate/1000
+        self.feed_rate = feed_rate/1000/self.dt
         self.feed_concentration = feed_concentration
         self.max_volume = max_volume
         self.is_fedbatch = is_fedbatch
@@ -42,27 +43,32 @@ class equations:
     
 
     def growth_speed(self):
+        #calculates mu (growth speed)
         if self.substrate <= 0:
             self.mu = 0
         else:
             self.mu = self.mu_max*(self.substrate/(self.half_saturation_constant+self.substrate))
     
     def new_biomass(self):
-        self.biomass =self.biomass + (self.dt * self.mu * self.biomass)
+        #calculates total biomass
+        self.biomass += (self.dt * self.mu * self.biomass)
     
     def new_substrate(self):
-        if self.substrate <= 0:
-            self.substrate = 0
+        #calculatessubstrate concentration
         total_substrate = self.substrate - ((1/self.biomass_substrate_constant)*self.mu*self.biomass)
         self.substrate = total_substrate
+        if self.substrate <= 0:
+            self.substrate = 0
         self.substrate_concentration = total_substrate / self.volume
     
     def new_volume(self):
+        #calculates liquid volume for bioreactor
         self.volume += self.feed_rate
         self.substrate += self.feed_concentration * self.feed_rate
         self.substrate_concentration = self.substrate_concentration/self.volume
     
     def initialise(self):
+        #sets all values to default and checks if fedbtch can be performed
         if self.is_fedbatch and self.volume >= self.max_volume:
             raise Exception("Max vollume should be greater than start vollume")
         self.__trigger = False
@@ -74,6 +80,7 @@ class equations:
         self.volume_steps = []
     
     def trigger_is_met(self):
+        #checks if fedbatch trigger condition is met
         if self.__trigger == False:
             if self.trigger_condition == "OD" and self.biomass > self.trigger_value:
                 self.__trigger = True
@@ -83,6 +90,7 @@ class equations:
                 self.trigger_condition = True
     
     def update(self):
+        #updtees all methods every timestepS
         self.trigger_is_met()
         self.growth_speed()
         self.new_biomass()
@@ -91,6 +99,7 @@ class equations:
             self.new_volume()
     
     def run(self):
+        #actually runs the fermentation
         self.initialise()
         
         while self.time_current < self.max_time:

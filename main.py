@@ -9,6 +9,7 @@ from strain.knockout import *
 
 def main():
     
+    #initiating plotly/dash app
     app = Dash()
 
     app.layout = html.Div([
@@ -20,6 +21,7 @@ def main():
     }
     )
 
+    #callback decorator, used for the update graph function
     @app.callback(
         Output("fermentation-graph","figure"),
         Input("run-btn", "n_clicks"),
@@ -37,7 +39,6 @@ def main():
         Input("gene_2", "value"),
         Input("gene_3", "value"),
         Input("gene_4", "value"),
-        prevent_initial_call=True
 
     )
     def update_graph(
@@ -55,7 +56,7 @@ def main():
     gene_1,
     gene_2,
     gene_3,
-    gene_4
+    gene_4,
 ):
 
         #on of switch for fedbatch
@@ -80,6 +81,8 @@ def main():
             feed_concentration= fedbatch_concentration,
             product=product_start
         )
+
+        #knockout function is called
         knockout(
             gene_1,
             gene_2,
@@ -89,8 +92,9 @@ def main():
         
         #calculating substrate/biomass over time
         fermentation.run()
-    
-        fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+        #addig plot
+        fig = make_subplots()
     
     
     #adding biomass trace
@@ -110,7 +114,7 @@ def main():
                     line = dict(color = "Blue", dash = "dash"),
                     yaxis="y2"
             ))
-
+        #adding volume
         fig.add_trace(
             go.Scatter(x=fermentation.time_steps,
                        y=fermentation.volume_steps,

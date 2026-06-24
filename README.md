@@ -158,5 +158,15 @@ at: 30 min
 24. Begonnen met het implementeren van de fedbatch functionaliteit. Hiervoor een initialise methot toegevoegd aan de equetions class. Deze cheked eerst of het max vollume groter is dan het initiële vollume. Zo niet raised hij een exception. Anders zet hij alle steps lists op 0.
 ![plot](plots/figures/Screenshot%202026-06-17%20121822.png)
 
-25. Fedbatch geïmplementeerd. Meerdere variablen van naam veranderd en andere dingen geweizigd. Variablen werden niet lekker geassigned, dit kwam door meerdere dingen. Maar nu werkt het.
+25. Fedbatch geïmplementeerd. Meerdere variablen van naam veranderd en andere dingen geweizigd. Variablen werden niet lekker geassigned, dit kwam door meerdere dingen. Maar nu werkt het. ChatGPT gebruikt voor het helpen met de `@app.callback` decorator. De rest zelf getroubleshoot.
 ![plot](plots/figures//Screenshot%202026-06-17%20173000.png)
+
+26. Steps van de feedrate slider aangepast
+
+27. Support voor meerdere y assen toegevoegd. Vorige mannier kon alleen met 2 assen. Hiervoor tutorial van plotly gevolgd.
+![plot](plots/figures//Screenshot%202026-06-24%20105848.png)
+
+28. De feed voelt te snel. Zie figuur. Feed begint op t 518.9 en stopt op t 521. volume 3 -> 5.1. dit is een feedrate van 1l / min, terwijl dit 0.01l/min moet zijn. Om meer inzicht te krijgen in de feedrate is de unit test bij ferm_equetions.py aangepast. Deze heeft nu de geüpdate class en print de feedrate. dit is nu 0.0999.., met een dt van 0.1. dit moet eigenlijk 0.001 zijn. In de `__init__`: `self.feed_rate = feed_rate/1000/self.dt` aangepast naar `self.feed_rate = feed_rate/1000*self.dt`. Dit geeft wel 0.001. 
+![plot](plots/figures/newplot.png)
+fermentatie opnieuw gerund geeft volgende plot:
+![plot](plots/figures/Screenshot%202026-06-24%20173214.png)

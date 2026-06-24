@@ -24,7 +24,7 @@ class equations:
         self.max_time = max_time
         self.dt = dt
         self.mu = mu_max
-        self.feed_rate = feed_rate/1000/self.dt
+        self.feed_rate = feed_rate/1000*self.dt
         self.feed_concentration = feed_concentration
         self.max_volume = max_volume
         self.is_fedbatch = is_fedbatch
@@ -114,19 +114,21 @@ class equations:
 
 def main():
     fermentation = equations(
-        biomass=0.4,
-        substrate_concentration=10,
-        volume=3,
-        mu_max= 0.5,
-        dt = 1,
-        max_time=10,
-        product= 0)
+        biomass= 0.2,
+        substrate_concentration =10, 
+                volume=3,
+                max_time=1000, 
+                feed_rate=10,
+                feed_concentration=10,
+                max_volume=10,
+                trigger_condition="Substrate",
+                trigger_value=1, 
+                dt = 0.1,
+                is_fedbatch= True)
     
     fermentation.run()
 
-    print(fermentation.time_steps)
-    print(fermentation.mu_steps)
-    print(fermentation.substrate_concentration_steps)
+    print(fermentation.feed_rate)
 
 if __name__ == "__main__":
     main()
